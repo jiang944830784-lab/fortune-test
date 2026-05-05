@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<!-- saved from url=(0281)https://static.coze.site/7631115282236506431-data_volume/files/%E6%89%80%E6%9C%89%E5%AF%B9%E8%AF%9D/%E4%B8%BB%E5%AF%B9%E8%AF%9D/H5%E9%A1%B9%E7%9B%AE/%E8%A7%82%E9%9F%B3%E7%AD%BE/index.html?sign=1780484147-361966ec2c-0-34f81c72a5b198998ffde781c846de9428cf82c2a2311f0eef03f22a40836934 -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>线上观音签</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&amp;family=ZCOOL+XiaoWei&amp;display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #f5f0e8;
+            --bg-secondary: #ebe4d8;
+            --text-primary: #4a4035;
+            --text-secondary: #6b5d4d;
+            --accent-gold: #c9a96e;
+            --accent-dark-gold: #a08050;
+            --ink-color: #3d3428;
+            --border-color: #d4c8b5;
+            --shadow-color: rgba(74, 64, 53, 0.15);
+        }
+
+        body {
+            font-family: 'Noto Serif SC', 'SimSun', serif;
+            background: var(--bg-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: var(--text-primary);
+        }
+
+        .zen-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(200, 190, 170, 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(210, 195, 175, 0.25) 0%, transparent 45%),
+                radial-gradient(ellipse at 50% 50%, rgba(240, 235, 220, 0.5) 0%, transparent 70%),
+                linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            pointer-events: none;
+        }
+
+        .ink-splash {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .ink-splash:nth-child(1) { top: 10%; left: 5%; background: radial-gradient(circle, var(--ink-color) 0%, transparent 70%); }
+        .ink-splash:nth-child(2) { top: 60%; right: 8%; background: radial-gradient(circle, var(--ink-color) 0%, transparent 65%); width: 80px; height: 80px; }
+        .ink-splash:nth-child(3) { bottom: 15%; left: 15%; background: radial-gradient(circle, var(--ink-color) 0%, transparent 60%); width: 120px; height: 120px; }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            text-align: center;
+            padding: 30px 0 20px;
+        }
+
+        .main-title {
+            font-family: 'ZCOOL XiaoWei', 'Noto Serif SC', serif;
+            font-size: 2.2rem;
+            color: var(--ink-color);
+            letter-spacing: 8px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+            position: relative;
+            display: inline-block;
+        }
+
+        .main-title::before,
+        .main-title::after {
+            content: '☸';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            color: var(--accent-gold);
+            opacity: 0.7;
+        }
+        .main-title::before { left: -30px; }
+        .main-title::after { right: -30px; }
+
+        .subtitle {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 10px;
+            letter-spacing: 3px;
+        }
+
+        .deco-line {
+            width: 120px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+            margin: 15px auto;
+        }
+
+        .screen {
+            display: none;
+            flex-direction: column;
+            flex: 1;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .screen.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .category-intro {
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .category-intro h2 {
+            font-size: 1.3rem;
+            color: var(--ink-color);
+            margin-bottom: 10px;
+        }
+
+        .category-intro p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            padding: 10px;
+        }
+
+        .category-btn {
+            background: linear-gradient(145deg, #faf7f0, #f0ebe0);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 18px 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px var(--shadow-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-dark-gold));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .category-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px var(--shadow-color);
+            border-color: var(--accent-gold);
+        }
+
+        .category-btn:hover::before {
+            opacity: 1;
+        }
+
+        .category-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .category-icon {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+
+        .category-name {
+            font-size: 1rem;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .shake-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .category-display {
+            background: linear-gradient(135deg, #fff9f0, #f5efe5);
+            border: 2px solid var(--accent-gold);
+            border-radius: 20px;
+            padding: 15px 30px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(201, 169, 110, 0.2);
+        }
+
+        .category-display span {
+            font-size: 1.1rem;
+            color: var(--ink-color);
+        }
+
+        .category-display .label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+        }
+
+        .shake-wrapper {
+            position: relative;
+            margin: 20px 0;
+        }
+
+        .shake-btn {
+            width: 200px;
+            height: 280px;
+            background: linear-gradient(180deg, #8b6914 0%, #6b4f10 50%, #4a3508 100%);
+            border: none;
+            border-radius: 20px 20px 25px 25px;
+            cursor: pointer;
+            position: relative;
+            box-shadow: 
+                0 10px 30px rgba(0,0,0,0.3),
+                inset 0 2px 10px rgba(255,255,255,0.1),
+                inset 0 -5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.1s ease;
+            overflow: hidden;
+        }
+
+        .shake-btn::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            height: 60px;
+            background: linear-gradient(180deg, rgba(0,0,0,0.3), transparent);
+            border-radius: 15px 15px 0 0;
+        }
+
+        .shake-btn.shaking {
+            animation: shake 0.1s ease-in-out infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: rotate(-3deg) translateX(-2px); }
+            50% { transform: rotate(3deg) translateX(2px); }
+        }
+
+        .sticks-container {
+            position: absolute;
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .mini-stick {
+            width: 6px;
+            height: 40px;
+            background: linear-gradient(180deg, #f5e6c8, #e8d4a8, #d4c090);
+            border-radius: 2px;
+            opacity: 0.9;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .shake-btn.shaking .mini-stick {
+            animation: stickBounce 0.15s ease-in-out infinite alternate;
+        }
+
+        .mini-stick:nth-child(1) { animation-delay: 0s; }
+        .mini-stick:nth-child(2) { animation-delay: 0.03s; }
+        .mini-stick:nth-child(3) { animation-delay: 0.06s; }
+        .mini-stick:nth-child(4) { animation-delay: 0.09s; }
+        .mini-stick:nth-child(5) { animation-delay: 0.12s; }
+
+        @keyframes stickBounce {
+            from { transform: translateY(0) rotate(0deg); }
+            to { transform: translateY(-5px) rotate(5deg); }
+        }
+
+        .shake-hint {
+            margin-top: 30px;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        .shake-hint .tap-icon {
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        .result-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .result-card {
+            background: linear-gradient(145deg, #fffef8, #f8f4eb);
+            border: 3px solid var(--accent-gold);
+            border-radius: 25px;
+            padding: 30px 25px;
+            max-width: 100%;
+            width: 100%;
+            box-shadow: 
+                0 10px 40px rgba(201, 169, 110, 0.25),
+                inset 0 0 30px rgba(255, 255, 255, 0.5);
+            position: relative;
+            animation: cardAppear 0.8s ease-out;
+        }
+
+        @keyframes cardAppear {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .result-card::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 20%;
+            right: 20%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+            border-radius: 0 0 10px 10px;
+        }
+
+        .result-number {
+            font-family: 'ZCOOL XiaoWei', serif;
+            font-size: 2.5rem;
+            color: var(--accent-dark-gold);
+            text-align: center;
+            margin-bottom: 5px;
+            letter-spacing: 5px;
+        }
+
+        .result-rank {
+            text-align: center;
+            font-size: 1rem;
+            padding: 5px 20px;
+            border-radius: 15px;
+            margin: 0 auto 20px;
+            display: inline-block;
+        }
+
+        .rank-shangshang { background: linear-gradient(135deg, #ffd700, #ffb347); color: #5d4200; }
+        .rank-zhongshang { background: linear-gradient(135deg, #87ceeb, #98d8c8); color: #2d5a5a; }
+        .rank-zhongping { background: linear-gradient(135deg, #dda0dd, #e6e6fa); color: #4a3060; }
+        .rank-zhongxia { background: linear-gradient(135deg, #ffa07a, #ffb890); color: #6d3010; }
+        .rank-xiaxia { background: linear-gradient(135deg, #b0c4de, #c9c9c9); color: #4a4a5a; }
+
+        .result-poem {
+            background: linear-gradient(135deg, #faf8f3, #f0ebe0);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .result-poem p {
+            font-size: 1.15rem;
+            color: var(--ink-color);
+            line-height: 2;
+            letter-spacing: 2px;
+        }
+
+        .result-interpretation {
+            margin-top: 20px;
+            padding: 20px;
+            background: linear-gradient(135deg, #fdfcfa, #f5f0e8);
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+        }
+
+        .result-interpretation h4 {
+            font-size: 1rem;
+            color: var(--accent-dark-gold);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .result-interpretation p {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            width: 100%;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-dark-gold));
+            color: white;
+            box-shadow: 0 4px 15px rgba(201, 169, 110, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(201, 169, 110, 0.5);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #f5f0e8, #ebe4d8);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #ebe4d8, #e0d8c8);
+        }
+
+        .flying-stick {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 30px;
+            height: 180px;
+            background: linear-gradient(180deg, #f5e6c8, #e8d4a8, #d4c090);
+            border-radius: 5px 5px 3px 3px;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .flying-stick.visible {
+            animation: flyOut 1s ease-out forwards;
+        }
+
+        @keyframes flyOut {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            20% {
+                opacity: 1;
+                transform: translate(-50%, -100%) rotate(-10deg);
+            }
+            40% {
+                transform: translate(-50%, -150%) rotate(10deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, 100%) rotate(0deg);
+            }
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 99;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .overlay.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 380px) {
+            .main-title { font-size: 1.8rem; letter-spacing: 5px; }
+            .main-title::before, .main-title::after { display: none; }
+            .category-grid { gap: 8px; }
+            .category-btn { padding: 14px 8px; }
+            .category-icon { font-size: 1.5rem; }
+            .category-name { font-size: 0.9rem; }
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(201, 169, 110, 0.4);
+            transform: scale(0);
+            animation: rippleEffect 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes rippleEffect {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="zen-bg"></div>
+    <div class="ink-splash"></div>
+    <div class="ink-splash"></div>
+    <div class="ink-splash"></div>
+    
+    <div class="overlay" id="overlay"></div>
+    <div class="flying-stick" id="flyingStick"></div>
+
+    <div class="container">
+        <header class="header">
+            <h1 class="main-title">线上观音签</h1>
+            <div class="deco-line"></div>
+            <p class="subtitle">心诚则灵 · 诸事皆宜</p>
+        </header>
+
+        <!-- 第一步：选择分类 -->
+        <div class="screen" id="screen-category">
+            <div class="category-intro">
+                <h2>请选择所求事项</h2>
+                <p>静心凝神，诚心默念观世音菩萨<br>然后点击所求事项</p>
+            </div>
+            <div class="category-grid">
+                <button class="category-btn" data-category="家宅">
+                    <div class="category-icon">🏠</div>
+                    <div class="category-name">家宅</div>
+                </button>
+                <button class="category-btn" data-category="病疾">
+                    <div class="category-icon">💊</div>
+                    <div class="category-name">病疾</div>
+                </button>
+                <button class="category-btn" data-category="时运">
+                    <div class="category-icon">🌟</div>
+                    <div class="category-name">时运</div>
+                </button>
+                <button class="category-btn" data-category="求寿">
+                    <div class="category-icon">🧧</div>
+                    <div class="category-name">求寿</div>
+                </button>
+                <button class="category-btn" data-category="生意">
+                    <div class="category-icon">💰</div>
+                    <div class="category-name">生意</div>
+                </button>
+                <button class="category-btn" data-category="官讼">
+                    <div class="category-icon">⚖️</div>
+                    <div class="category-name">官讼</div>
+                </button>
+                <button class="category-btn" data-category="婚姻">
+                    <div class="category-icon">💑</div>
+                    <div class="category-name">婚姻</div>
+                </button>
+                <button class="category-btn" data-category="寻人">
+                    <div class="category-icon">🔍</div>
+                    <div class="category-name">寻人</div>
+                </button>
+                <button class="category-btn" data-category="求子">
+                    <div class="category-icon">👶</div>
+                    <div class="category-name">求子</div>
+                </button>
+                <button class="category-btn" data-category="失物">
+                    <div class="category-icon">📦</div>
+                    <div class="category-name">失物</div>
+                </button>
+                <button class="category-btn" data-category="功名">
+                    <div class="category-icon">📜</div>
+                    <div class="category-name">功名</div>
+                </button>
+                <button class="category-btn" data-category="口舌">
+                    <div class="category-icon">💬</div>
+                    <div class="category-name">口舌</div>
+                </button>
+            </div>
+        </div>
+
+        <!-- 第二步：摇签筒 -->
+        <div class="screen" id="screen-shake">
+            <div class="shake-container">
+                <div class="category-display">
+                    <div class="label">您所求之事</div>
+                    <span id="selectedCategory">失物</span>
+                </div>
+                <div class="shake-wrapper">
+                    <button class="shake-btn" id="shakeBtn">
+                        <div class="sticks-container">
+                            <div class="mini-stick"></div>
+                            <div class="mini-stick"></div>
+                            <div class="mini-stick"></div>
+                            <div class="mini-stick"></div>
+                            <div class="mini-stick"></div>
+                        </div>
+                    </button>
+                </div>
+                <p class="shake-hint">
+                    <span class="tap-icon">🙏</span><br>
+                    点击签筒诚心摇动
+                </p>
+            </div>
+        </div>
+
+        <!-- 第三步&第四步：签文结果 -->
+        <div class="screen active" id="screen-result">
+            <div class="result-container">
+                <div class="result-card" id="resultCard">
+                <div class="result-number">第拾叁签</div>
+                <div class="result-rank rank-xiaxia">下下</div>
+                <div class="result-poem">
+                    <p>三瓦两舍难寻踪，失去之物杳无踪；空将心事愁眉上，不如放下免忧忡。</p>
+                </div>
+                <div class="result-interpretation">
+                    <h4>✨ 观音解签</h4>
+                    <p>此签主大凶，三长两短。时运蹉跎，灾祸相随。诸事不顺，不可妄动。宜静心修德，祈祷消灾。耐心等待，方有转机。</p>
+                </div>
+            </div>
+                <div class="btn-group">
+                    <button class="btn btn-secondary" id="btnRechoose">重新选类</button>
+                    <button class="btn btn-primary" id="btnAgain">再求一签</button>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            诚心拜求 · 善念感召
+        </footer>
+    </div>
+
+    <script>
+        // 28签完整数据（每签12分类）
+        const allDivineData = {
+            "1": {
+                name: "第壹签",
+                rank: "上上",
+                poems: {
+                    "家宅": "角星照耀家荣昌，人口平安大吉昌；田蚕五谷皆丰熟，祸去福来保安康。",
+                    "病疾": "角星护驾无灾患，请祷祈祷保安康；急进前来求妙药，顷刻除危得安康。",
+                    "时运": "角星照身时运通，二十四气喜春风；满堂和气皆欢喜，贵人接引紫微宫。",
+                    "求寿": "虽然寿命前世修，亦要诚心把香焚；作福许愿多行善，自有延年益寿长。",
+                    "生意": "角星护身生意隆，财如流水进门来；经营必定财丁旺，贵人接引四方财。",
+                    "官讼": "酒色财气是祸根，劝君莫要染此身；若能戒除诸般恶，自有福禄喜相迎。",
+                    "婚姻": "你求婚姻正当时，红叶题诗配凤俦；佳偶天成成美眷，百年偕老到白头。",
+                    "寻人": "外游数日未归时，角星照耀有归期；路途平安无阻滞，骨肉团聚喜相随。",
+                    "求子": "隔年留种子前修，积德累功福自流；诚心求子天赐与，观音送子到门头。",
+                    "失物": "渺无音影难寻踪，忽然失去又还来；只因诚心感天地，原物归还在眼前。",
+                    "功名": "一不慌来二不忙，角星照命姓名香；青云有路终须到，题名金榜姓名扬。",
+                    "口舌": "静坐家中百事安，何必与人争长短；退让一步天宽地阔，自然无事免灾祸。"
+                },
+                interpretation: "此签诸事大吉，角星高照，祸去福来。凡事顺遂，心想事成。虔诚祈求，必得观世音菩萨庇佑，保佑家宅安宁、身体健康、事业顺利、姻缘美满。"
+            },
+            "2": {
+                name: "第贰签",
+                rank: "上上",
+                poems: {
+                    "家宅": "春光明媚照华堂，瑞气盈门百事昌；老少平安增福寿，荣华富贵自然来。",
+                    "病疾": "良药苦口病渐安，医药有缘遇灵丹；调理自可保安康，何必忧愁心不安。",
+                    "时运": "时来运转喜气扬，春风得意百花香；鹏程万里青云上，自有天恩降福祥。",
+                    "求寿": "福寿双全世所稀，前生修得此根基；今世再加行善事，延年益寿更无期。",
+                    "生意": "东来紫气入门庭，财源茂盛达三江；客似云来生意好，金玉满堂庆丰盈。",
+                    "官讼": "官讼是非莫强争，忍让息争讼自平；如今若有贵人助，事了无事得安宁。",
+                    "婚姻": "千里姻缘一线牵，两情相悦结良缘；佳人才子成佳偶，琴瑟和鸣乐无边。",
+                    "寻人": "寻人不见莫心焦，音信虽无渐渐回；待到春暖花开日，亲人团聚笑颜开。",
+                    "求子": "春来种子好栽培，秋后收成结果来；积德行善天赐子，观音送子入门来。",
+                    "失物": "失去之物不必忧，原物归还有日留；若还不得心莫急，静待佳音自然来。",
+                    "功名": "十年寒窗苦读书，一朝得志姓名标；青云路上身荣贵，脱却蓝袍换紫袍。",
+                    "口舌": "闲言碎语不须听，清者自清浊自清；心胸坦荡无惧怕，任他风浪起水平。"
+                },
+                interpretation: "此签主大吉大利，万事亨通。春风得意，福禄双全。若问前程，光明远大；若问家宅，平安吉庆。诸事可放心去做，必有贵人相助。"
+            },
+            "3": {
+                name: "第叁签",
+                rank: "上上",
+                poems: {
+                    "家宅": "三星高照福临门，华堂生辉喜气盈；老安少怀人丁旺，金玉满堂庆丰年。",
+                    "病疾": "神农尝草遇仙方，妙药灵丹效力强；沉疴顿起除灾祸，身安体健寿延长。",
+                    "时运": "运到时来不可当，紫微星照姓名香；文曲星官来保佑，春风得意姓名扬。",
+                    "求寿": "寿比南山松柏青，福如东海波涛深；若是更行方便事，天赐遐龄福满门。",
+                    "生意": "财星高照入门来，金银满库自然堆；经营得利千般好，贵人扶助四方财。",
+                    "官讼": "是非官讼莫慌张，忍耐饶人福自长；如今若遇贵人助，事情消散保安康。",
+                    "婚姻": "天赐良缘不可当，郎才女貌两相当；红绳系足前生定，佳偶天成福寿长。",
+                    "寻人": "寻人千里亦能归，路途安稳有支持；只因善念感天地，亲人自然得相随。",
+                    "求子": "三星高照送子来，积德行善福门开；诚心祈求观音佑，天赐麟儿到门来。",
+                    "失物": "失去之物有还期，只因虔诚福自随；静心等待三五日，原物归还不差移。",
+                    "功名": "一举成名天下知，鳌头独占占先机；青云路上身荣贵，光宗耀祖姓名标。",
+                    "口舌": "是非只为多开口，烦恼皆因强出头；奉劝诸君且忍耐，自然无事保安康。"
+                },
+                interpretation: "三星高照，福禄双全。此签主万事如意，吉祥止止。问事求谋，无不称心。观世音菩萨加护，必有喜事临门。"
+            },
+            "4": {
+                name: "第肆签",
+                rank: "下下",
+                poems: {
+                    "家宅": "阴云密布暗华堂，人口不安有祸殃；急早修德行方便，庶免灾祸入门墙。",
+                    "病疾": "病入膏肓实可伤，医药无效实难当；请祷祈祷求神佑，或许沉疴得离床。",
+                    "时运": "运限崎岖实可嗟，时运不济莫强求；守分待时休妄动，静心安命待天时。",
+                    "求寿": "寿命原来有数定，前世作业今生还；若要延年增福寿，急早行善种良因。",
+                    "生意": "生意萧条难获利，资本耗损有忧惊；不如守旧待时机，妄动破财祸随生。",
+                    "官讼": "官讼牵连实可悲，是非口舌惹灾危；急宜和解休结怨，讼则终凶要自知。",
+                    "婚姻": "婚姻不合强结合，怨偶相伴苦蹉跎；不如各自安本分，免得多情反成空。",
+                    "寻人": "寻人不见实堪忧，路途阻滞有阻留；静心等待莫急躁，音信来时在晚秋。",
+                    "求子": "阴云遮月难求子，积德行善可转机；诚心修持待天时，观音赐福后有期。",
+                    "失物": "失去之物恐难寻，物去人离两无音；不必过求空费力，徒劳心意怨尤深。",
+                    "功名": "功名未遂实堪伤，运蹇时乖志未扬；且待来年还有望，潜修德业待时机。",
+                    "口舌": "是非口舌惹灾危，戒之在斗要自知；退让一步无侵害，何必与人较短长。"
+                },
+                interpretation: "此签主诸事不顺，时运乖张。阴云密布，灾祸相随。凡事守分为宜，不可妄动。待时转运，方有转机。当静心修德，以求转祸为福。"
+            },
+            "5": {
+                name: "第伍签",
+                rank: "上上",
+                poems: {
+                    "家宅": "五福临门庆有余，天赐吉祥宅安居；老少平安增福寿，荣华富贵福无涯。",
+                    "病疾": "妙药三分病渐安，良医相遇不须慌；调理有方兼有缘，沉疴顿起保安康。",
+                    "时运": "五福骈臻降吉祥，时来自有福星照；贵人接引登天路，万事亨通任逍遥。",
+                    "求寿": "寿山福海永无疆，五福临门降吉祥；行善积德天赐福，延年益寿福寿长。",
+                    "生意": "五行八卦定财源，生意兴隆通四海；客来如云钱似水，盈利千金自然来。",
+                    "官讼": "五官端正福随身，是非官讼莫与争；忍耐饶人福自长，急流勇退保平安。",
+                    "婚姻": "五伦纲常天注定，佳偶天成配合深；夫唱妇随同到老，百年好合福满门。",
+                    "寻人": "五行相生寻人回，音信传来笑颜开；骨肉团圆皆欢喜，亲情相聚乐无涯。",
+                    "求子": "五福临门天赐子，积德行善福自来；诚心祈求观音佑，麟儿送至门庭开。",
+                    "失物": "五路财神守护中，失去之物有还期；虔诚祈祷神明显，原物归还在眼前。",
+                    "功名": "五经读罢姓名标，龙门一跃姓名扬；一举首登龙虎榜，十年身到凤凰池。",
+                    "口舌": "五蕴皆空无是非，心如止水自然安；不与人争口舌事，福禄随来免灾危。"
+                },
+                interpretation: "五福临门，大吉之兆。此签诸事顺遂，五福骈臻。问家宅则安宁，问功名则显达，问疾病则转安，问诸事则亨通。诚心祈求，必得菩萨庇佑。"
+            },
+            "6": {
+                name: "第陆签",
+                rank: "中下",
+                poems: {
+                    "家宅": "宅中阴气暗沉沉，祈福求安要诚心；修桥补路积阴德，天赐福禄降门庭。",
+                    "病疾": "疾病缠身实可忧，医药罔效费心谋；不如静养心神正，庶免灾祸得自由。",
+                    "时运": "运如舟行水上浮，时好时歹不自由；守分安命待天时，强求妄动反成忧。",
+                    "求寿": "寿命长短皆由天，强求无益空自煎；不如行善积功德，诚心自有福禄延。",
+                    "生意": "生意难做费精神，买卖平平不亏盈；守旧安常待时机，莫贪小利妄转型。",
+                    "官讼": "官讼牵连未可知，且宜和解莫迟疑；若要兴词去告状，徒然耗费损资财。",
+                    "婚姻": "婚姻大事要三思，不可草率强合之；缘分未到莫强求，静待良缘自然来。",
+                    "寻人": "寻人阻滞有迟延，不必过急心忧煎；待到春暖花开日，亲人相会自然圆。",
+                    "求子": "缘分未到莫强求，静心修德待天时；积善之家天赐福，观音送子有日期。",
+                    "失物": "失物难寻莫强求，空将心事皱眉头；静心回忆来时路，或许还能有下落。",
+                    "功名": "功名未遂莫悲伤，运限未来有日期；且待三春花发后，蟾宫折桂未为迟。",
+                    "口舌": "口舌是非不可听，闲言闲语莫认真；清者自清心坦荡，何必与人较假真。"
+                },
+                interpretation: "此签主平平，时运未至，诸事需待。不可强求，守分为宜。静心修德，积累善缘，时来运转，自有转机。不可妄动，免招灾祸。"
+            },
+            "7": {
+                name: "第柒签",
+                rank: "下下",
+                poems: {
+                    "家宅": "家宅摇动不安康，是非口舌起祸殃；急早修德行善事，庶免灾祸入门墙。",
+                    "病疾": "病入膏肓实可悲，医药无效命垂危；纵然祈祷神明显，亦恐难逃大限期。",
+                    "时运": "运限衰败实堪嗟，风波险阻实无涯；不如归去守本分，待时运转再兴家。",
+                    "求寿": "寿命将尽实可悲，纵有仙丹也难医；不如及早修善德，死后超升上瑶池。",
+                    "生意": "生意亏本实可怜，血本无归泪涟涟；不如暂且收业务，蓄精养锐待来年。",
+                    "官讼": "官讼输赢实难言，是非牵连有祸根；不如及早去和解，庶免牢狱受苦辛。",
+                    "婚姻": "婚姻不合实堪悲，怨偶相伴受孤栖；强合终须分离去，不如及早各东西。",
+                    "寻人": "寻人不见实可伤，山高路远各一方；此去不知何日回，音信渺茫实堪伤。",
+                    "求子": "求子艰难实可悲，积德修善可转机；诚心祈祷观音佑，天赐麟儿在后期。",
+                    "失物": "失物已去难再回，空留惆怅实可悲；莫若放下心烦恼，免增忧愁哭哀哀。",
+                    "功名": "功名未就莫强求，命运不济实可羞；不如归去勤耕读，等待来春再出头。",
+                    "口舌": "口舌是非惹祸根，不如缄口学哑僧；若要免灾消横祸，忍耐饶人福自生。"
+                },
+                interpretation: "此签主大凶，诸事不利。时运乖张，灾祸频仍。凡事小心谨慎，不可妄动。宜静心修德，祈祷消灾。耐心等待，或有转机。"
+            },
+            "8": {
+                name: "第捌签",
+                rank: "上上",
+                poems: {
+                    "家宅": "八面威风镇华堂，吉祥如意福无疆；老安少怀人丁旺，金玉满堂庆丰穰。",
+                    "病疾": "八方神医来救难，妙手回春病即安；沉疴立起如反掌，灵丹一粒保平安。",
+                    "时运": "八节安康喜气扬，时来自有福星照；贵人接引登天路，万事亨通任逍遥。",
+                    "求寿": "八千岁岁福寿长，寿山福海永无疆；行善积德天赐福，延年益寿乐无疆。",
+                    "生意": "八面来财进门庭，财源茂盛达三江；经营得利千般好，贵人扶助财路广。",
+                    "官讼": "八风吹不动安如山，是非官讼莫相关；若有人来相告诉，忍耐饶人福自还。",
+                    "婚姻": "八音齐鸣配凤鸾，佳偶天成结良缘；夫唱妇随同到老，琴瑟和鸣乐百年。",
+                    "寻人": "八方追寻定有音，亲人团聚喜盈门；路途安稳无阻滞，骨肉相逢笑语温。",
+                    "求子": "八福骈臻天赐子，积德行善福自随；诚心祈求观音佑，麟儿送至门庭来。",
+                    "失物": "八面搜索不落空，神明护佑物还踪；若还失去莫心急，原物归还有日逢。",
+                    "功名": "八年窗下苦读书，一举成名姓名标；鼻头独占龙头位，光宗耀祖姓名高。",
+                    "口舌": "八面圆融无是非，口舌自然化为夷；心胸开阔福自至，任他风浪起平地。"
+                },
+                interpretation: "八面威风，诸事大吉。此签主福寿双全，吉祥如意。八音齐鸣，八面来财。问家宅则安宁，问功名则成就，问疾病则痊愈，问诸事则亨通。"
+            },
+            "9": {
+                name: "第玖签",
+                rank: "下下",
+                poems: {
+                    "家宅": "九霄云暗实可惊，家宅不安祸患生；急早祈福求神佑，修德行善保安宁。",
+                    "病疾": "九死一生实可悲，疾病缠绵实难医；医药罔效且延命，诚心祈祷保安康。",
+                    "时运": "九曲黄河十八弯，时运不济实难行；守分待时休妄动，耐心等待转机临。",
+                    "求寿": "九九八十一难关，寿数将尽实堪伤；行善积德或许救，延年益寿保安康。",
+                    "生意": "九回肠转实可怜，生意萧条本亏先；不如暂且收业务，待到春来再图前。",
+                    "官讼": "九泉之下实可悲，官讼牵连有祸危；及早和解莫兴词，庶免牢狱受鞭笞。",
+                    "婚姻": "九嫁不成实可伤，姻缘不合成怨偶；强合终须分离去，不如及早各回头。",
+                    "寻人": "九垓八埏各一方，寻人不见实堪伤；音信渺茫难寻找，亲人何日得还乡。",
+                    "求子": "求子艰难实可伤，积德修善可转机；诚心祈祷观音佑，天赐麟儿在后期。",
+                    "失物": "九宵云外难追寻，失去之物杳无音；不必过求空费力，徒增烦恼损心神。",
+                    "功名": "九霄之上实难登，功名未就莫强求；潜心修德待天时，蟾宫折桂在后头。",
+                    "口舌": "九曲回肠是非多，口舌官灾惹身磨；不如缄口学沉默，忍耐饶人福自和。"
+                },
+                interpretation: "此签主不吉，凶多吉少。时运蹇滞，诸事阻隔。阴云密布，灾祸相随。宜静心修德，祈祷消灾。耐心等待，不可妄动。或有转机。"
+            },
+            "10": {
+                name: "第拾签",
+                rank: "上上",
+                poems: {
+                    "家宅": "十全十美福满门，吉祥如意庆长春；老少平安增福寿，荣华富贵福无垠。",
+                    "病疾": "十字街头遇药王，妙手回春病离床；沉疴立起保安康，灵丹一粒寿延长。",
+                    "时运": "十面埋伏运有时，一旦冲出是亨期；贵人相扶青云上，万事如意任施为。",
+                    "求寿": "十洲三岛福寿长，寿比彭祖八百春；若能行善积功德，延年益寿永无疆。",
+                    "生意": "十方来财进门庭，财源茂盛达三江；日进斗金盈库满，贵人相助生意隆。",
+                    "官讼": "十目所视莫妄为，官讼是非要三思；忍耐饶人福自长，安分守己免灾危。",
+                    "婚姻": "十年修得同船渡，百年修得共枕眠；佳偶天成配凤鸾，夫唱妇随乐百年。",
+                    "寻人": "十方追寻有音讯，亲人团聚喜迎门；路途安稳无阻滞，骨肉相逢笑语温。",
+                    "求子": "十全十美天赐子，积德行善福无疆；诚心祈求观音佑，麟儿送至门庭来。",
+                    "失物": "十方神佑物还踪，失去之物有还期；虔诚祈祷神明显，原物归还在眼前。",
+                    "功名": "十年寒窗无人问，一举成名天下知；金榜题名占鳌头，光宗耀祖显当时。",
+                    "口舌": "十口心思祸自消，口舌是非不需听；心胸坦荡无惧怕，福禄随来免灾危。"
+                },
+                interpretation: "十全十美，大吉之兆。此签主诸事顺遂，福禄双全。十全十美，尽善尽美。问家宅则安宁，问功名则成就，问疾病则痊愈，问诸事则亨通。"
+            },
+            "11": {
+                name: "第拾壹签",
+                rank: "中下",
+                poems: {
+                    "家宅": "一门吉凶未可知，且宜修德免灾危；阴阳二宅要调理，风水调和福自随。",
+                    "病疾": "一病未瘳一病生，阴阳不调实可惊；急早延医求妙药，清心静养保安宁。",
+                    "时运": "一高一低时运中，时好时歹不相同；守分待时莫妄动，静心等待转机通。",
+                    "求寿": "一般冷暖自家知，寿数长短难预为；行善积德可延年，清心寡欲寿天齐。",
+                    "生意": "一买一卖费商量，生意平平有盈亏；守旧安常待时机，莫贪小利致耗财。",
+                    "官讼": "一重公案一重关，是非官讼费周旋；不如和解省费用，免受拖累免忧煎。",
+                    "婚姻": "一对鸳鸯一只飞，姻缘未就莫强求；待到良缘来配合，夫唱妇随乐优游。",
+                    "寻人": "一去无踪费猜疑，寻人不见有归期；静心等待莫急切，音信来时在后期。",
+                    "求子": "缘分未到莫强求，静心修德待天时；积善之家天赐福，观音送子有日期。",
+                    "失物": "一失足成千古恨，失去之物难复回；莫若放下心烦恼，重新置买免伤怀。",
+                    "功名": "一纸文书一字香，功名前程有迟忙；不必躁进宜静守，待时自有姓名扬。",
+                    "口舌": "一样春风各般面，口舌是非莫认真；清者自清浊自浊，何必与人较短长。"
+                },
+                interpretation: "此签主平平，凶吉未定。时运起伏，需要谨慎。不可急躁，守分为宜。修德行善，以待转机。"
+            },
+            "12": {
+                name: "第拾贰签",
+                rank: "上上",
+                poems: {
+                    "家宅": "日月交辉照华堂，家宅安宁福寿长；老安少怀人丁旺，荣华富贵喜无疆。",
+                    "病疾": "日月合壁病离床，医药有效保安康；急早调理可痊愈，延年益寿福无疆。",
+                    "时运": "日升月恒时运通，光明正大福星照；贵人接引登天路，万事亨通任逍遥。",
+                    "求寿": "日月星辰寿最长，寿山福海永无疆；若能行善积功德，延年益寿乐无疆。",
+                    "生意": "日进斗金财满门，财源茂盛达三江；经营得利千般好，贵人扶助生意隆。",
+                    "官讼": "日月经天照万方，官讼是非自消亡；安分守己无他虑，是非不染寿延长。",
+                    "婚姻": "日暖风和配合宜，郎才女貌两相宜；天作之合结良缘，夫唱妇随永不移。",
+                    "寻人": "日出东方寻人回，路途安稳有支持；骨肉团聚皆欢喜，亲情相聚乐无涯。",
+                    "求子": "日暖风和天赐子，积德行善福无疆；诚心祈求观音佑，麟儿送至门庭来。",
+                    "失物": "日边红杏出墙来，失物还从日边回；虔诚祈祷神明显，原物归还有日开。",
+                    "功名": "日月光华耀文章，一举成名姓名扬；鼻头独占龙头位，光宗耀祖姓名高。",
+                    "口舌": "日暖风和百事安，口舌是非化云烟；心胸坦荡无惧怕，福禄随来免灾危。"
+                },
+                interpretation: "日月交辉，大吉之兆。此签主诸事顺遂，福寿双全。光明正大，前途无限。问家宅则安宁，问功名则成就，问疾病则痊愈，问诸事则亨通。"
+            },
+            "13": {
+                name: "第拾叁签",
+                rank: "下下",
+                poems: {
+                    "家宅": "三长两短实可惊，家宅不安有祸生；急早修德行善事，庶免灾难入门庭。",
+                    "病疾": "三番四次病缠身，医药无效实难伸；若不诚心求神佑，恐防一命入幽冥。",
+                    "时运": "三起三落实堪伤，时运不济莫强求；不如归去守本分，耐心等待转机临。",
+                    "求寿": "三魂七魄将离散，寿数将尽实可悲；纵然祈祷神明显，恐防难逃大限期。",
+                    "生意": "三心二意生意难，本亏利少实可怜；不如暂且收业务，蓄精养锐待来年。",
+                    "官讼": "三言两语起祸端，官讼牵连实难安；及早和解莫兴词，庶免牢狱受苦难。",
+                    "婚姻": "三心二意难配合，怨偶相伴苦蹉跎；强合终须分离去，不如及早各解脱。",
+                    "寻人": "三回九转寻不见，山高水远各一天；音信渺茫实堪伤，亲人何日得团圆。",
+                    "求子": "求子艰难实可悲，积德修善或可回；诚心祈祷观音佑，天赐麟儿在后期。",
+                    "失物": "三瓦两舍难寻踪，失去之物杳无踪；空将心事愁眉上，不如放下免忧忡。",
+                    "功名": "三番两次不成功，功名未就实难逢；潜心修德待天时，蟾宫折桂在后头。",
+                    "口舌": "三言两语惹是非，口舌官灾实可危；不如缄口学哑僧，忍耐饶人福自随。"
+                },
+                interpretation: "此签主大凶，三长两短。时运蹉跎，灾祸相随。诸事不顺，不可妄动。宜静心修德，祈祷消灾。耐心等待，方有转机。"
+            },
+            "14": {
+                name: "第拾肆签",
+                rank: "下下",
+                poems: {
+                    "家宅": "四壁萧条实可伤，家宅不安有祸殃；急早祈福求神佑，修德行善免灾危。",
+                    "病疾": "四面楚歌病缠身，医药无效实难伸；若不诚心求神佑，恐防一命赴幽冥。",
+                    "时运": "四季不顺实堪伤，时运乖蹇莫强求；不如归去守本分，耐心等待转机临。",
+                    "求寿": "四维不张寿命短，寿数将尽实可悲；纵然祈祷求神佑，恐防难逃大限期。",
+                    "生意": "四季萧条生意难，本亏利少实可怜；不如暂且收业务，蓄精养锐待来年。",
+                    "官讼": "四大皆空实可悲，官讼牵连有祸危；及早和解莫兴词，庶免牢狱受鞭笞。",
+                    "婚姻": "四分五裂难配合，怨偶相伴苦蹉跎；强合终须分离去，不如及早各解脱。",
+                    "寻人": "四散飘零各一方，寻人不见实堪伤；音信渺茫难寻找，亲人何日得还乡。",
+                    "求子": "求子艰难实可悲，积德修善或可回；诚心祈祷观音佑，天赐麟儿在后期。",
+                    "失物": "四海飘零难寻踪，失去之物杳无踪；空将心事愁眉上，不如放下免忧忡。",
+                    "功名": "四书五经读未通，功名未就实难逢；潜心修德待天时，蟾宫折桂在后头。",
+                    "口舌": "四大皆空无是非，口舌之争实可危；不如缄口学哑僧，忍耐饶人福自随。"
+                },
+                interpretation: "此签主不吉，四面楚歌。时运不济，诸事受阻。阴云密布，灾祸频生。宜静心修德，祈祷消灾。耐心等待，不可妄动。"
+            },
+            "15": {
+                name: "第拾伍签",
+                rank: "中平",
+                poems: {
+                    "家宅": "五福临门各有时，家宅安稳待天机；修德行善可转吉，阴阳调和福自随。",
+                    "病疾": "五脏不安病缠身，医药调理可回春；静心修养保安康，无需过虑忧心神。",
+                    "时运": "五阴一阳时运中，时好时歹不相同；守分待时莫妄动，静心等待转机通。",
+                    "求寿": "五福寿字各有时，寿数长短天注定；行善积德可延年，清心寡欲寿延长。",
+                    "生意": "五谷丰登生意稳，买卖平平有盈亏；守旧安常待时机，莫贪小利致耗财。",
+                    "官讼": "五刑之属各有权，官讼是非要耐烦；忍耐饶人福自长，是非不染寿延长。",
+                    "婚姻": "五伦八德配良缘，夫唱妇随乐百年；缘分到了自然合，莫要强求结怨缘。",
+                    "寻人": "五湖四海各天涯，寻人阻滞有归期；静心等待莫急切，音信来时在后期。",
+                    "求子": "缘分未到莫强求，静心修德待天时；积善之家天赐福，观音送子有日期。",
+                    "失物": "五声六律难追寻，失去之物有音讯；静心回忆来时路，或许还有下落明。",
+                    "功名": "五经四书苦用功，功名前程有迟忙；不必躁进宜静守，待时自有姓名扬。",
+                    "口舌": "五音六律无是非，口舌之事莫认真；清者自清心坦荡，何必与人较短长。"
+                },
+                interpretation: "此签主平平，无大吉亦无大凶。五福临门，时运中等。诸事平稳，不可急躁。修德行善，可转祸为福。耐心等待，时来自有转机。"
+            },
+            "16": {
+                name: "第拾陆签",
+                rank: "上上",
+                poems: {
+                    "家宅": "六合同春福满门，家宅安宁喜盈门；老安少怀人丁旺，荣华富贵福无垠。",
+                    "病疾": "六甲怀胎保平安，医药调治病离床；急早调理可痊愈，母子安康福无疆。",
+                    "时运": "六出祁山时运通，春风得意马蹄轻；贵人接引青云上，万事亨通任纵横。",
+                    "求寿": "六合同春寿延长，寿山福海永无疆；若能行善积功德，延年益寿乐无疆。",
+                    "生意": "六合同心生意隆，财源茂盛达三江；客似云来财如水，日进斗金喜盈门。",
+                    "官讼": "六韬三略定太平，官讼是非自然轻；安分守己无他虑，是非不染寿延长。",
+                    "婚姻": "六礼既成配凤鸾，郎才女貌两相当；天作之合结良缘，夫唱妇随乐百年。",
+                    "寻人": "六亲不认有时回，寻人阻滞有支持；骨肉团聚皆欢喜，亲情相聚乐无涯。",
+                    "求子": "六福骈臻天赐子，积德行善福无疆；诚心祈求观音佑，麟儿送至门庭来。",
+                    "失物": "六神守护物还踪，失去之物有还期；虔诚祈祷神明显，原物归还有日开。",
+                    "功名": "六经读罢姓名扬，一举成名天下知；鼻头独占龙头位，光宗耀祖姓名高。",
+                    "口舌": "六根清净无是非，口舌之争化云烟；心胸坦荡无惧怕，福禄随来免灾危。"
+                },
+                interpretation: "六合同春，大吉之兆。此签主诸事顺遂，六六大顺。问家宅则安宁，问功名则成就，问疾病则痊愈，问诸事则亨通。诸事大吉，前途无限。"
+            },
+            "17": {
+                name: "第拾柒签",
+                rank: "上上",
+                poems: {
+                    "家宅": "七政四纪照华堂，家宅安宁福寿长；老安少怀人丁旺，荣华富贵喜无疆。",
+                    "病疾": "七星高照病离床，医药有效保安康；急早调理可痊愈，延年益寿福无疆。",
+                    "时运": "七星高照运时通，光明正大福星照；贵人接引登天路，万事亨通任逍遥。",
+                    "求寿": "七星伴月寿延长，寿山福海永无疆；若能行善积功德，延年益寿乐无疆。",
+                    "生意": "七星高照财满门，财源茂盛达三江；经营得利千般好，贵人扶助生意隆。",
+                    "官讼": "七星高照无官讼，安分守己免灾危；若有人来相告诉，忍耐饶人福自还。",
+                    "婚姻": "七星高照配良缘，郎才女貌两相宜；天作之合结良缘，夫唱妇随永不离。",
+                    "寻人": "七星高照寻人回，路途安稳有支持；骨肉团聚皆欢喜，亲情相聚乐无涯。",
+                    "求子": "七星高照天赐子，积德行善福无疆；诚心祈求观音佑，麟儿送至门庭来。",
+                    "失物": "七星高照物还踪，失去之物有还期；虔诚祈祷神明显，原物归还有日开。",
+                    "功名": "七星高照姓名扬，一举成名天下知；鼻头独占龙头位，光宗耀祖姓名高。",
+                    "口舌": "七星高照无是非，口舌之事化云烟；心胸坦荡无惧怕，福禄随来免灾危。"
+                },
+                interpretation: "七星高照，大吉之兆。此签主诸事顺遂，福寿双全。七政四纪，光明正大。问家宅则安宁，问功名则成就，问疾病则痊愈，问诸事则亨通。"
+            },
+            "18": {
+                name: "第拾捌签",
+                rank: "中上",
+                poems: {
+                    "家宅": "十八地狱实可惊，家宅不安有祸生；急早修德行善事，庶免灾难入门庭。",
+                    "病疾": "十八般艺各精通，医药调治病有功；静心修养可保安，延年益寿福无穷。",
+                    "时运": "十八变好时运通，时来运转有转机；守分待时莫妄动，静心等待福自随。",
+                    "求寿": "十八变好寿延长，寿山福海永无疆；若能行善积功德，延年益寿乐无疆。",
+                    "生意": "十八变好生意隆，财源茂盛达三江；经营得利千般好，贵人扶助财路广。",
+                    "官讼": "十八变好无官讼，安分守己免灾危；若有人来相告诉，忍耐饶人福自还。",
+                    "婚姻": "十八变好配良缘，郎才女貌两相宜；天作之合结良缘，夫唱妇随永不离。",
+                    "寻人": "十八变好寻人回，路途安稳有支持；骨肉团聚皆欢喜，亲情相聚乐无涯。",
+                    "求子": "十八变好天赐子，积德行善福自随；诚心祈求观音佑，麟儿送至门庭来。",
+                    "失物": "十八变动物还踪，失去之物有还期；虔诚祈祷神明显，原物归还有日开。",
+                    "功名": "十八变好姓名扬，一举成名天下知；鼻头独占龙头位，光宗耀祖姓名高。",
+                    "口舌": "十八变好无是非，口舌之事化云烟；心胸坦荡无惧怕，福禄随来免灾危。"
+                },
+                interpretation: "十八变好，由凶转吉。此签主先难后易，否极泰来。诸事先阻后通，先凶后吉。静心修德，积累善缘，时来运转，转祸为福。"
+            },
+            "19": {
+                name: "第拾玖签",
+                rank: "中平",
+                poems: {
+                    "家宅": "二十年后家运通，时来运转有转机；修德行善可保泰，阴阳调和福自随。",
+                    "病疾": "二十年后病离床，医药调理渐渐康；静心修养可保安，延年益寿福无疆。",
+                    "时运": "二十年后时运通，春风得意百事通；守分待时莫妄动，静心等待福自随。",
+                    "求寿": "二十年后寿延长，寿山福海永无疆；若能行善积功德，延年益寿乐无疆。",
+                    "生意": "二十年后生意隆，财源茂盛达三江；经营得利千般好，贵人扶助财路广。",
+                    "官讼": "二十年后无官讼，安分守己免灾危；若有人来相告诉，忍耐饶人福自还。",
+                    "婚姻": "二十年后配良缘，郎才女貌两相宜；天作之合结良缘，夫唱妇随永不离。",
+                    "寻人": "二十年后寻人回，路途安稳有支持；骨肉团聚皆欢喜，亲情相聚乐无涯。",
+                    "求子": "二十年后天赐子，积德行善福自随；诚心祈求观音佑，麟儿送至门庭来。",
+                    "失物": "二十年后物还踪，失去之物有还期；虔诚祈祷神明显，原物归还有日开。",
+                    "功名": "二十年后姓名扬，一举成名天下知；鼻头独占龙头位，光宗耀祖姓名高。",
+                    "口舌": "二十年后无是非，口舌之事化云烟；心胸坦荡无惧怕，福禄随来免灾危。"
+                },
+                interpretation: "二十年后，时来运转。此签主诸事先难后易，渐渐转好。需要耐心等待，不可急躁。修德行善，可加速转机。"
+            },
+            "20": {
+                name: "第贰拾签",
+                rank: "上上",
+                poems: {
+                    "家宅": "二八佳人福满堂，家宅安宁喜盈门；老安少怀人丁旺，荣华富贵福无垠。",
+                    "病疾": "二竖为灾病离床，医药调治保安康；急早调理可痊愈，母子平安福无疆。",
+                    "时运": "二八佳人时运通，春风得意百事通；贵人接引登天路，万事亨通任逍遥。",
+                    "求寿": "二八佳人寿延长，寿山福海永无疆；若能行善积功德，延年益寿乐无疆。",
+                    "生意": "二八佳人财满门，财源茂盛达三江；客似云来财如水，日进斗金喜盈门。",
+                    "官讼": "二八佳人无官讼，安分守己免灾危；若有人来相告诉，忍耐饶人福自还。",
+                    "婚姻": "二八佳人配凤鸾，郎才女貌两相宜；天作之合结良缘，夫唱妇随乐百年。",
+                    "寻人": "二八佳人寻人回，路途安稳有支持；骨肉团聚皆欢喜，亲情相聚乐无涯。",
+                    "求子": "二八佳人天赐子，积德行善福无疆；诚心祈求观音佑，麟儿送至门庭来。",
+                    "失物": "二八佳人守物回，失去之物有还期；虔诚祈祷神明显，原物归还有日开。",
+                    "功名": "二八佳人姓名扬，一举成名天下知；鼻头独占龙头位，光宗耀祖姓名高。",
+                    "口舌": "二八佳人无是非，口舌之事化云烟；心胸坦荡无惧怕，福禄随来免灾危。"
+                },
+                interpretation: "二八佳人，大吉之兆。此签主诸事顺遂，如花似锦。问家宅则安宁，问功名则成就，问疾病则痊愈，问诸事则亨通。诸事大吉，前途光明。"
+            },
+            "21": {
+                name: "第贰拾壹签",
+                rank: "上上",
+                poems: {
+                    "家宅": "三阳开泰福满门，家宅安宁喜盈门；老安少怀人丁旺，荣华富贵福无垠。",
+                    "病疾": "三阳开泰病离床，医药调治保安康；急早调理可痊愈，母子平安福无疆。",
+                    "时运": "三阳开泰时运通，春风得意百事通；贵人接引登天路，万事亨通任逍遥。",
+                    "求寿": "三阳开泰寿延长，寿山福海永无疆；若能行善积功德，延年益寿乐无疆。",
+                    "生意": "三阳开泰财满门，财源茂盛达三江；客似云来财如水，日进斗金喜盈门。",
+                    "官讼": "三阳开泰无官讼，安分守己免灾危；若有人来相告诉，忍耐饶人福自还。",
+                    "婚姻": "三阳开泰配凤鸾，郎才女貌两相宜；天作之合结良缘，夫唱妇随乐百年。",
+                    "寻人": "三阳开泰寻人回，路途安稳有支持；骨肉团聚皆欢喜，亲情相聚乐无涯。",
+                    "求子": "三阳开泰天赐子，积德行善福无疆；诚心祈求观音佑，麟儿送至门庭来。",
+                    "失物": "三阳开泰守物回，失去之物有还期；虔诚祈祷神明显，原物归还有日开。",
+                    "功名": "三阳开泰姓名扬，一举成名天下知；鼻头独占龙头位，光宗耀祖姓名高。",
+                    "口舌": "三阳开泰无是非，口舌之事化云烟；心胸坦荡无惧怕，福禄随来免灾危。"
+                },
+                interpretation: "三阳开泰，大吉之兆。此签主诸事顺遂，三阳开泰。问家宅则安宁，问功名则成就，问疾病则痊愈，问诸事则亨通。诸事大吉，万事如意。"
+            },
+            "22": {
+                name: "第贰拾贰签",
+                rank: "下下",
+                poems: {
+                    "家宅": "二十年后家运衰，时运不济实可哀；阴云密布有祸患，急早修德祈福来。",
+                    "病疾": "二十年后病缠绵，医药无效实难痊；若不诚心求神佑，恐防一命赴黄泉。",
+                    "时运": "二十年后运不通，时运乖蹇实可伤；不如归去守本分，耐心等待转机临。",
+                    "求寿": "二十年后寿数短，寿命将尽实可悲；纵然祈祷求神佑，恐防难逃大限期。",
+                    "生意": "二十年后生意难，本亏利少实可怜；不如暂且收业务，蓄精养锐待来年。",
+                    "官讼": "二十年后官讼缠，是非牵连有祸危；及早和解莫兴词，庶免牢狱受苦难。",
+                    "婚姻": "二十年后婚姻难，怨偶相伴苦蹉跎；强合终须分离去，不如及早各解脱。",
+                    "寻人": "二十年后寻人难，山高水远各一天；音信渺茫实堪伤，亲人何日得团圆。",
+                    "求子": "求子艰难实可悲，积德修善或可回；诚心祈祷观音佑，天赐麟儿在后期。",
+                    "失物": "二十年后物难寻，失去之物杳无踪；空将心事愁眉上，不如放下免忧忡。",
+                    "功名": "二十年后功名难，功名未就实难逢；潜心修德待天时，蟾宫折桂在后头。",
+                    "口舌": "二十年后口舌多，是非官灾实可危；不如缄口学哑僧，忍耐饶人福自随。"
+                },
+                interpretation: "此签主不吉，二十年后，时运不济。诸事不顺，阴云密布。宜静心修德，祈祷消灾。耐心等待，不可妄动。或有转机。"
+            },
+            "23": {
+                name: "第贰拾叁签",
+                rank: "下平",
+                poems: {
+                    "家宅": "三七跌落实可伤，家宅安稳有低昂；修德行善可保安，阴阳调和福自长。",
+                    "病疾": "三七之数病缠身，医药调治渐渐康；静心修养可保安，延年益寿福无疆。",
+                    "时运": "三七之数时运中，时好时歹不相同；守分待时莫妄动，静心等待转机通。",
+                    "求寿": "三七之数寿数定，寿数长短各有时；行善积德可延年，清心寡欲寿延长。",
+                    "生意": "三七之数生意稳，买卖平平有盈亏；守旧安常待时机，莫贪小利致耗财。",
+                    "官讼": "三七之数官讼轻，是非不多各安宁；忍耐饶人福自长，是非不染寿延长。",
+                    "婚姻": "三七之数配良缘，缘分到了自然合；夫唱妇随同到老，莫要强求结怨缘。",
+                    "寻人": "三七之数寻人迟，阻滞之中有归期；静心等待莫急切，音信来时在后期。",
+                    "求子": "缘分未到莫强求，静心修德待天时；积善之家天赐福，观音送子有日期。",
+                    "失物": "三七之数物难追，失去之物有音讯；静心回忆来时路，或许还有下落明。",
+                    "功名": "三七之数功名迟，功名前程有迟忙；不必躁进宜静守，待时自有姓名扬。",
+                    "口舌": "三七之数口舌少，是非之事莫认真；清者自清心坦荡，何必与人较短长。"
+                },
+                interpretation: "此签主平平，三七之数。诸事有起有落，有得有失。不可急躁，守分为宜。修德行善，可保安康。耐心等待，时来自有转机。"
+            },
+            "24": {
+                name: "第贰拾肆签",
+                rank: "上上",
+                poems: {
+                    "家宅": "二十四孝福满门，家宅安宁喜盈门；老安少怀人丁旺，荣华富贵福无垠。",
+                    "病疾": "二十四节气病散，医药调治保安康；急早调理可痊愈，母子平安福无疆。",
+                    "时运": "二十四时皆好音，春风得意百事通；贵人接引登天路，万事亨通任逍遥。",
+                    "求寿": "二十四孝寿延长，寿山福海永无疆；若能行善积功德，延年益寿乐无疆。",
+                    "生意": "二十四向财满门，财源茂盛达三江；客似云来财如水，日进斗金喜盈门。",
+                    "官讼": "二十四孝无官讼，安分守己免灾危；若有人来相告诉，忍耐饶人福自还。",
+                    "婚姻": "二十四孝配凤鸾，郎才女貌两相宜；天作之合结良缘，夫唱妇随乐百年。",
+                    "寻人": "二十四孝寻人回，路途安稳有支持；骨肉团聚皆欢喜，亲情相聚乐无涯。",
+                    "求子": "二十四孝天赐子，积德行善福无疆；诚心祈求观音佑，麟儿送至门庭来。",
+                    "失物": "二十四孝守物回，失去之物有还期；虔诚祈祷神明显，原物归还有日开。",
+                    "功名": "二十四孝姓名扬，一举成名天下知；鼻头独占龙头位，光宗耀祖姓名高。",
+                    "口舌": "二十四孝无是非，口舌之事化云烟；心胸坦荡无惧怕，福禄随来免灾危。"
+                },
+                interpretation: "二十四孝，大吉之兆。此签主诸事顺遂，孝感动天。问家宅则安宁，问功名则成就，问疾病则痊愈，问诸事则亨通。诸事大吉，万事如意。"
+            },
+            "25": {
+                name: "第贰拾伍签",
+                rank: "下下",
+                poems: {
+                    "家宅": "二十年后家运衰，时运不济实可哀；阴云密布有祸患，急早修德祈福来。",
+                    "病疾": "二十年后病缠绵，医药无效实难痊；若不诚心求神佑，恐防一命赴黄泉。",
+                    "时运": "二十年后运不通，时运乖蹇实可伤；不如归去守本分，耐心等待转机临。",
+                    "求寿": "二十年后寿数短，寿命将尽实可悲；纵然祈祷求神佑，恐防难逃大限期。",
+                    "生意": "二十年后生意难，本亏利少实可怜；不如暂且收业务，蓄精养锐待来年。",
+                    "官讼": "二十年后官讼缠，是非牵连有祸危；及早和解莫兴词，庶免牢狱受苦难。",
+                    "婚姻": "二十年后婚姻难，怨偶相伴苦蹉跎；强合终须分离去，不如及早各解脱。",
+                    "寻人": "二十年后寻人难，山高水远各一天；音信渺茫实堪伤，亲人何日得团圆。",
+                    "求子": "求子艰难实可悲，积德修善或可回；诚心祈祷观音佑，天赐麟儿在后期。",
+                    "失物": "二十年后物难寻，失去之物杳无踪；空将心事愁眉上，不如放下免忧忡。",
+                    "功名": "二十年后功名难，功名未就实难逢；潜心修德待天时，蟾宫折桂在后头。",
+                    "口舌": "二十年后口舌多，是非官灾实可危；不如缄口学哑僧，忍耐饶人福自随。"
+                },
+                interpretation: "此签主不吉，二十年后，时运蹉跎。诸事不顺，灾祸频生。宜静心修德，祈祷消灾。耐心等待，不可妄动。坚守本分，方有转机。"
+            },
+            "26": {
+                name: "第贰拾陆签",
+                rank: "中上",
+                poems: {
+                    "家宅": "二十年后家渐安，时来运转有转机；修德行善可保泰，阴阳调和福自随。",
+                    "病疾": "二十年后病渐康，医药调治渐渐安；静心修养可保安，延年益寿福无疆。",
+                    "时运": "二十年后时渐通，春风得意百事通；守分待时莫妄动，静心等待福自随。",
+                    "求寿": "二十年后寿渐长，寿山福海永无疆；若能行善积功德，延年益寿乐无疆。",
+                    "生意": "二十年后生意通，财源茂盛达三江；经营得利千般好，贵人扶助财路广。",
+                    "官讼": "二十年后官讼轻，是非不多各安宁；忍耐饶人福自长，是非不染寿延长。",
+                    "婚姻": "二十年后婚姻合，夫唱妇随同到老；缘分到了自然成，莫要强求结怨缘。",
+                    "寻人": "二十年后寻人回，阻滞之中有归期；静心等待莫急切，音信来时在后期。",
+                    "求子": "缘分渐到莫强求，静心修德待天时；积善之家天赐福，观音送子有日期。",
+                    "失物": "二十年后物有踪，失去之物有音讯；静心回忆来时路，或许还有下落明。",
+                    "功名": "二十年后功名成，功名前程渐渐通；不必躁进宜静守，待时自有姓名扬。",
+                    "口舌": "二十年后口舌少，是非之事莫认真；清者自清心坦荡，何必与人较短长。"
+                },
+                interpretation: "此签主由平渐好，二十年后，时来运转。诸事先平后好，先难后易。修德行善，可加速转机。耐心等待，前途光明。"
+            },
+            "27": {
+                name: "第贰拾柒签",
+                rank: "下下",
+                poems: {
+                    "家宅": "二十八宿暗无光，家宅不安有祸生；急早修德行善事，庶免灾难入门庭。",
+                    "病疾": "二十八宿暗无光，病入膏肓实难当；医药无效命垂危，诚心祈祷保安康。",
+                    "时运": "二十八宿暗无光，时运不济实堪伤；不如归去守本分，耐心等待转机临。",
+                    "求寿": "二十八宿暗无光，寿命将尽实可悲；纵然祈祷求神佑，恐防难逃大限期。",
+                    "生意": "二十八宿暗无光，生意萧条实可怜；不如暂且收业务，蓄精养锐待来年。",
+                    "官讼": "二十八宿暗无光，官讼牵连有祸危；及早和解莫兴词，庶免牢狱受苦难。",
+                    "婚姻": "二十八宿暗无光，怨偶相伴苦蹉跎；强合终须分离去，不如及早各解脱。",
+                    "寻人": "二十八宿暗无光，寻人不见实堪伤；音信渺茫难寻找，亲人何日得还乡。",
+                    "求子": "求子艰难实可悲，积德修善或可回；诚心祈祷观音佑，天赐麟儿在后期。",
+                    "失物": "二十八宿暗无光，失去之物杳无踪；空将心事愁眉上，不如放下免忧忡。",
+                    "功名": "二十八宿暗无光，功名未就实难逢；潜心修德待天时，蟾宫折桂在后头。",
+                    "口舌": "二十八宿暗无光，是非官灾实可危；不如缄口学哑僧，忍耐饶人福自随。"
+                },
+                interpretation: "此签主大凶，二十八宿暗无光。诸事不顺，灾祸相随。阴云密布，前途暗淡。宜静心修德，祈祷消灾。耐心等待，不可妄动。坚守本分，或有转机。"
+            },
+            "28": {
+                name: "第贰拾捌签",
+                rank: "下",
+                poems: {
+                    "家宅": "二十八宿落平川，家宅不安有祸愆；阴云笼罩实可叹，急早修德祈福全。",
+                    "病疾": "二十八宿落平川，疾病缠绵实难痊；医药无效空费力，诚心祈祷求安然。",
+                    "时运": "二十八宿落平川，时运蹉跎实堪怜；不如静守待天时，耐心等待转机旋。",
+                    "求寿": "二十八宿落平川，寿命将尽实可悲；纵然祈祷难延寿，行善积德或可追。",
+                    "生意": "二十八宿落平川，生意亏折实可怜；不如暂且收业务，静待来年再图前。",
+                    "官讼": "二十八宿落平川，官讼是非有祸愆；及早和解莫兴词，庶免拖累受熬煎。",
+                    "婚姻": "二十八宿落平川，怨偶相伴苦缠绵；强合终须分离去，不如及早各安眠。",
+                    "寻人": "二十八宿落平川，寻人不见实堪怜；音信渺茫难再得，亲人何日得团圆。",
+                    "求子": "求子艰难实可悲，积德修善或可回；诚心祈祷观音佑，天赐麟儿在后期。",
+                    "失物": "二十八宿落平川，失去之物难复全；莫若放下心烦恼，空将忧戚损天年。",
+                    "功名": "二十八宿落平川，功名不就实堪怜；潜修德业待天时，蟾宫折桂在来年。",
+                    "口舌": "二十八宿落平川，是非口舌起灾愆；不如缄口学古圣，忍耐饶人福自全。"
+                },
+                interpretation: "此签主大凶，二十八宿落平川。诸事不顺，灾祸连连。时运蹉跎，前途暗淡。宜静心修德，行善积德，祈祷消灾。耐心等待，不可妄动。坚守本分，忍辱负重，方有转机。"
+            }
+        };
+
+        let currentCategory = '';
+        let currentResult = null;
+        let isShaking = false;
+        let shakeTimer = null;
+
+        const screens = {
+            category: document.getElementById('screen-category'),
+            shake: document.getElementById('screen-shake'),
+            result: document.getElementById('screen-result')
+        };
+
+        const elements = {
+            selectedCategory: document.getElementById('selectedCategory'),
+            shakeBtn: document.getElementById('shakeBtn'),
+            resultCard: document.getElementById('resultCard'),
+            btnRechoose: document.getElementById('btnRechoose'),
+            btnAgain: document.getElementById('btnAgain'),
+            flyingStick: document.getElementById('flyingStick')
+        };
+
+        function showScreen(screenName) {
+            Object.values(screens).forEach(screen => screen.classList.remove('active'));
+            screens[screenName].classList.add('active');
+        }
+
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                createRipple(e, this);
+                currentCategory = this.dataset.category;
+                elements.selectedCategory.textContent = currentCategory;
+                showScreen('shake');
+            });
+        });
+
+        function createRipple(event, element) {
+            const ripple = document.createElement('span');
+            ripple.classList.add('ripple');
+            const rect = element.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = event.clientX - rect.left - size / 2 + 'px';
+            ripple.style.top = event.clientY - rect.top - size / 2 + 'px';
+            element.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 600);
+        }
+
+        elements.shakeBtn.addEventListener('click', function() {
+            if (isShaking) return;
+            isShaking = true;
+            this.classList.add('shaking');
+            const shakeDuration = 1000 + Math.random() * 2000;
+            shakeTimer = setTimeout(() => stopShaking(), shakeDuration);
+        });
+
+        function stopShaking() {
+            isShaking = false;
+            elements.shakeBtn.classList.remove('shaking');
+            if (shakeTimer) { clearTimeout(shakeTimer); shakeTimer = null; }
+            showFlyingStick();
+        }
+
+        function showFlyingStick() {
+            elements.flyingStick.classList.add('visible');
+            setTimeout(() => {
+                elements.flyingStick.classList.remove('visible');
+                showResult();
+            }, 1000);
+        }
+
+        function showResult() {
+            const signNumber = Math.floor(Math.random() * 28) + 1;
+            const signData = allDivineData[signNumber];
+            const poem = signData.poems[currentCategory] || signData.poems["家宅"];
+            currentResult = {
+                number: signNumber,
+                name: signData.name,
+                rank: signData.rank,
+                poem: poem,
+                interpretation: signData.interpretation
+            };
+            renderResult(currentResult);
+            showScreen('result');
+        }
+
+        function renderResult(result) {
+            const rankClass = getRankClass(result.rank);
+            elements.resultCard.innerHTML = `
+                <div class="result-number">${result.name}</div>
+                <div class="result-rank ${rankClass}">${result.rank}</div>
+                <div class="result-poem">
+                    <p>${result.poem}</p>
+                </div>
+                <div class="result-interpretation">
+                    <h4>✨ 观音解签</h4>
+                    <p>${result.interpretation}</p>
+                </div>
+            `;
+        }
+
+        function getRankClass(rank) {
+            const rankMap = {
+                '上上': 'rank-shangshang', '上': 'rank-shangshang',
+                '中上': 'rank-zhongshang', '中': 'rank-zhongping',
+                '中平': 'rank-zhongping', '中下': 'rank-zhongxia',
+                '下': 'rank-xiaxia', '下下': 'rank-xiaxia', '下平': 'rank-xiaxia'
+            };
+            return rankMap[rank] || 'rank-zhongping';
+        }
+
+        elements.btnRechoose.addEventListener('click', function() {
+            currentCategory = ''; currentResult = null;
+            showScreen('category');
+        });
+
+        elements.btnAgain.addEventListener('click', function() {
+            currentResult = null;
+            showScreen('shake');
+        });
+
+        document.addEventListener('selectstart', function(e) {
+            if (e.target.tagName === 'BUTTON' || e.target.tagName === 'DIV') e.preventDefault();
+        });
+
+        document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+
+        showScreen('category');
+    </script>
+
+
+</body></html>
